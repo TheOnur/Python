@@ -40,6 +40,12 @@ class Queue(object):
         self.head = None
         self.tail = None
     
+    def getFirst(self):
+        return self.head
+    
+    def getLast(self):
+        return self.tail
+
     def traverse(self):
         if self.head is None:
             raise Exception('Queue is Empty')
