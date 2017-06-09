@@ -5,7 +5,7 @@ class QueueNode(object):
     def __str__(self):
         return 'Queue_Node_' + self.data
 
-class QueueList(object):
+class Queue(object):
     arr = []
     def __init__(self):
         self.head = None
@@ -48,7 +48,7 @@ class QueueList(object):
         for i in range(n):
             print(self.arr[i].data)
 
-q = QueueList()
+q = Queue()
 q.enqueue('2')
 q.enqueue('4')
 q.enqueue('6')
