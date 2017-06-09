@@ -2,6 +2,10 @@ def heap_sort(arr):
     n = len(arr)
     for i in range(n, -1 , -1):
         def heapify(arr, i, n):
+            """
+               Heap is a specialized tree-based data structure. 
+               At index i, 2 * i+ 1 gives the left child and 2 * i + 2 gives the right child.  
+            """
             index = i
             left = 2 * i + 1
             right = 2 * i + 2
@@ -17,7 +21,7 @@ def heap_sort(arr):
                 arr[index] = arr[i]
                 arr[i] = temp
                 heapify(arr, index, n)
-                
+
     for i in range(n-1, 0, -1):
         def swap(arr, i):
             temp = arr[i]
