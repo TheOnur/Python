@@ -4,7 +4,8 @@ def heap_sort(arr):
         def heapify(arr, i, n):
             """
                Heap is a specialized tree-based data structure. 
-               At index i, 2 * i+ 1 gives the left child and 2 * i + 2 gives the right child.  
+               At index i, 2 * i + 1 gives the left child and 2 * i + 2 gives the right child.
+               After maximizing the heap, i.e, parent node can not be smaller than childs, replace the root with child lead and do the same operation recursively.  
             """
             index = i
             left = 2 * i + 1
