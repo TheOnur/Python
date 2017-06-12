@@ -1,59 +1,69 @@
-class Node(object):
-    def __init__(self, data, next = None):
+class Node:
+    def __init__(self, data):
         self.data = data
-        self.next = next
-    def __str__(self):
-        return 'Node_' + self.data
+        self.next = None
 
-class LinkedList(object):
+
+class LinkedList:
     def __init__(self):
         self.head = None
 
-    def append(self, new_data):
-        new_node = Node(new_data)
-
+    def add_node(self, data):
+        new_node = Node(data)
         if self.head is None:
             self.head = new_node
             return
-        
-        last = self.head
-        while last.next:
-            last = last.next
-        
-        last.next = new_node
-    
-    def delete(self, data):
         temp = self.head
-        prev = self.head
-        while temp:
-            if temp.data == data:
-                break
+        while temp.next:
             temp = temp.next
-        
-        while prev:
-            if prev.next and prev.next.data == data:
-                break
-            prev = prev.next
+        temp.next = new_node
 
-        if temp:
-            if prev is None:
-                self.head = temp.next
-            else:
-                prev.next = temp.next
-           
-
-    def print(self):
+    def traversal(self):
         temp = self.head
         while temp:
-            print(temp.data)
+            print(str(temp.data))
             temp = temp.next
 
+    def is_empty(self):
+        return self.head is None
+
+    def get_length_iterative(self):
+        length = 0
+        if self.is_empty():
+            return length
+        temp = self.head
+        while temp:
+            length = length + 1
+            temp = temp.next
+        return length
+
+    def get_length_recursive(self, node):
+        if node is None:
+            return 0
+        return self.get_length_recursive(node.next) + 1
+
+    def delete_node(self, data):
+        if self.is_empty():
+            raise Exception('Empty List!')
+        delete_node = self.head
+        if delete_node.data == data:
+            self.head = delete_node.next
+            return
+        while delete_node:
+            if delete_node.data == data:
+                break
+            prev = delete_node
+            delete_node = delete_node.next
+        if delete_node is None:
+            return
+        prev.next = delete_node.next
 
 
-llist = LinkedList()
-llist.append('2')    
-llist.append('4')
-llist.append('6')
-llist.append('8')
-llist.delete('8')
-llist.print()
+linkedList = LinkedList()
+linkedList.add_node(2)
+linkedList.add_node(4)
+linkedList.add_node(6)
+print('Before Delete:' + str(linkedList.get_length_recursive(linkedList.head)))
+linkedList.delete_node(2)
+print('After Delete:' + str(linkedList.get_length_recursive(linkedList.head)))
+linkedList.traversal()
